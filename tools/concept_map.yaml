@@ -1,0 +1,146 @@
+# Curated concept equivalences between OTel and Micrometer metric names.
+#
+# The compare tool matches the two inventories automatically on exact metric name first. This file
+# is the thin human-supplied layer for the cases where the *concept* lines up but the *names* differ
+# — which is most of the interesting comparison. Every entry should be defensible from
+# context/otel-metrics.md (OTel side) or the captured micrometer inventory (Micrometer side).
+#
+# relation:
+#   direct   - same concept, comparable instrument + unit (naming aside)
+#   partial  - overlapping but different granularity/dimensionality (note why)
+#   semantic - same concept but different unit or instrument (note the shift)
+#
+# Exact-name matches (e.g. jvm.memory.used on both sides) do NOT need an entry here — the tool finds
+# them. List only cross-name pairs. One OTel metric may map to several Micrometer metrics and vice
+# versa (e.g. one OTel histogram vs a Micrometer Timer that is the same thing under another name).
+
+pairs:
+  # --- JVM runtime: OTel runtime-telemetry vs Micrometer Jvm*Metrics --------------------------
+  - otel: jvm.gc.duration
+    micrometer: jvm.gc.pause
+    relation: semantic
+    note: same GC-pause concept; OTel histogram(s) vs Micrometer Timer(seconds). Names differ.
+  - otel: jvm.class.count
+    micrometer: jvm.classes.loaded
+    relation: direct
+    note: currently-loaded class count; OTel singular `class.count` vs Micrometer `classes.loaded`.
+  - otel: jvm.class.unloaded
+    micrometer: jvm.classes.unloaded
+    relation: direct
+    note: cumulative unloaded classes.
+  - otel: jvm.thread.count
+    micrometer: jvm.threads.live
+    relation: partial
+    note: >
+      OTel folds daemon/state into attributes on one `jvm.thread.count`; Micrometer splits into
+      jvm.threads.live / .daemon / .peak / .states (separate meters).
+  - otel: jvm.memory.limit
+    micrometer: jvm.memory.max
+    relation: direct
+    note: >
+      Per-pool max/limit memory (MM area+id tags ↔ jvm.memory.pool.name), bytes. OTel updowncounter
+      `By` vs Micrometer gauge bytes; name differs (limit vs max). Micrometer's OTel `MeterConvention`
+      renames jvm.memory.max → jvm.memory.limit directly (§2.5).
+  - otel: jvm.memory.used_after_last_gc
+    micrometer: jvm.memory.usage.after.gc
+    relation: direct
+    note: >
+      Per-pool heap usage after the last GC (MM area+pool tags), bytes. OTel updowncounter `By` vs
+      Micrometer gauge bytes; same concept, name differs.
+  - otel: jvm.buffer.memory.limit
+    micrometer: jvm.buffer.total.capacity
+    relation: direct
+    note: >
+      Per-buffer-pool total capacity (MM id tag), bytes. OTel updowncounter `By` vs Micrometer gauge
+      bytes; same concept, name differs (memory.limit vs total.capacity).
+
+  # --- CPU / system: note OTel buckets these under jvm.* and system.*, Micrometer under system.* -
+  - otel: jvm.cpu.time
+    micrometer: process.cpu.time
+    relation: semantic
+    note: process CPU time; OTel unit `s` (DOUBLE_SUM) vs Micrometer `ns` (COUNTER).
+  - otel: jvm.cpu.recent_utilization
+    micrometer: process.cpu.usage
+    relation: direct
+    note: recent process CPU utilization, ratio [0,1].
+  - otel: jvm.cpu.count
+    micrometer: system.cpu.count
+    relation: direct
+    note: processors available to the JVM.
+  - otel: jvm.system.cpu.utilization
+    micrometer: system.cpu.usage
+    relation: direct
+    note: whole-system recent CPU utilization, ratio [0,1].
+  - otel: jvm.system.cpu.load_1m
+    micrometer: system.load.average.1m
+    relation: direct
+    note: 1-minute system load average.
+  - otel: jvm.file_descriptor.count
+    micrometer: process.files.open
+    relation: direct
+    note: open file descriptors.
+  - otel: jvm.file_descriptor.limit
+    micrometer: process.files.max
+    relation: direct
+    note: max file descriptors.
+
+  # --- DB connection pools: Micrometer HikariCP (hikaricp.connections.*) vs the agent's two ----
+  # OTel variants. The agent instruments the *same* HikariCP pool, so these line up closely.
+  # Note the recurring finding: Micrometer's seconds-normalized timers match the OTel *stable*
+  # set (unit s) but not the *legacy* set (unit ms).
+  #   legacy (when=default):           db.client.connections.*   ({connections} / ms)
+  #   stable (when=opt-in=database):   db.client.connection.*    ({connection}  / s)
+  - {otel: db.client.connections.max,             micrometer: hikaricp.connections.max,     relation: direct,   note: max pool size}
+  - {otel: db.client.connection.max,              micrometer: hikaricp.connections.max,     relation: direct,   note: max pool size (stable)}
+  - {otel: db.client.connections.idle.min,        micrometer: hikaricp.connections.min,     relation: direct,   note: min idle connections}
+  - {otel: db.client.connection.idle.min,         micrometer: hikaricp.connections.min,     relation: direct,   note: min idle (stable)}
+  - {otel: db.client.connections.pending_requests, micrometer: hikaricp.connections.pending, relation: direct,  note: threads awaiting a connection}
+  - {otel: db.client.connection.pending_requests, micrometer: hikaricp.connections.pending, relation: direct,   note: pending (stable)}
+  - {otel: db.client.connections.timeouts,        micrometer: hikaricp.connections.timeout, relation: direct,   note: connection-acquire timeouts (counter)}
+  - {otel: db.client.connection.timeouts,         micrometer: hikaricp.connections.timeout, relation: direct,   note: timeouts (stable)}
+  - {otel: db.client.connections.usage,           micrometer: hikaricp.connections.active,  relation: partial,  note: OTel folds used/idle into one `usage`+state attr; Micrometer splits active/idle}
+  - {otel: db.client.connections.usage,           micrometer: hikaricp.connections.idle,    relation: partial,  note: idle half of the OTel `usage`+state split}
+  - {otel: db.client.connection.count,            micrometer: hikaricp.connections.active,  relation: partial,  note: stable `count`+state attr vs Micrometer active/idle split}
+  - {otel: db.client.connections.create_time,     micrometer: hikaricp.connections.creation, relation: semantic, note: connection-creation time; OTel legacy histogram ms vs Micrometer Timer seconds}
+  - {otel: db.client.connection.create_time,      micrometer: hikaricp.connections.creation, relation: direct,   note: creation time; OTel stable unit s == Micrometer seconds}
+  - {otel: db.client.connections.use_time,        micrometer: hikaricp.connections.usage,   relation: semantic, note: how long a connection is held; legacy ms vs Micrometer seconds}
+  - {otel: db.client.connection.use_time,         micrometer: hikaricp.connections.usage,   relation: direct,   note: use time; stable s == Micrometer seconds}
+  - {otel: db.client.connections.wait_time,       micrometer: hikaricp.connections.acquire, relation: semantic, note: time to acquire a connection; legacy ms vs Micrometer seconds}
+  - {otel: db.client.connection.wait_time,        micrometer: hikaricp.connections.acquire, relation: direct,   note: acquire/wait time; stable s == Micrometer seconds}
+
+  # --- RPC / gRPC: OTel emits one duration histogram per side (+ message-size histograms);
+  # Micrometer's MetricCollecting interceptors split each side into a processing-duration Timer
+  # plus request/response message counters. Recurring unit finding again: Micrometer seconds match
+  # the OTel *stable* `*.call.duration` (s), not the *legacy* `*.duration` (ms).
+  - {otel: rpc.client.call.duration, micrometer: grpc.client.processing.duration, relation: direct,   note: client call duration; stable unit s == Micrometer seconds}
+  - {otel: rpc.client.duration,      micrometer: grpc.client.processing.duration, relation: semantic, note: client call duration; legacy unit ms vs Micrometer seconds}
+  - {otel: rpc.server.call.duration, micrometer: grpc.server.processing.duration, relation: direct,   note: server call duration; stable unit s == Micrometer seconds}
+  - {otel: rpc.server.duration,      micrometer: grpc.server.processing.duration, relation: semantic, note: server call duration; legacy unit ms vs Micrometer seconds}
+  - {otel: rpc.client.request.size,  micrometer: grpc.client.requests.sent,      relation: partial,  note: client request messages; OTel histograms byte size, Micrometer counts messages}
+  - {otel: rpc.client.response.size, micrometer: grpc.client.responses.received, relation: partial,  note: client response messages; size histogram vs message counter}
+  - {otel: rpc.server.request.size,  micrometer: grpc.server.requests.received,  relation: partial,  note: server request messages; size histogram vs message counter}
+  - {otel: rpc.server.response.size, micrometer: grpc.server.responses.sent,     relation: partial,  note: server response messages; size histogram vs message counter}
+
+  # --- Spring Boot JDBC pool gauges (DataSourcePoolMetrics → jdbc.connections.*) vs OTel db pool --
+  - {otel: db.client.connections.max,      micrometer: jdbc.connections.max,  relation: direct, note: max pool connections (Spring DataSourcePoolMetrics)}
+  - {otel: db.client.connection.max,       micrometer: jdbc.connections.max,  relation: direct, note: max pool connections (stable)}
+  - {otel: db.client.connections.idle.min, micrometer: jdbc.connections.min,  relation: direct, note: min idle connections (Spring)}
+  - {otel: db.client.connection.idle.min,  micrometer: jdbc.connections.min,  relation: direct, note: min idle (stable)}
+
+  # --- HTTP server/client (Spring WebMVC + instrumented RestTemplate, Tier 3) -------------------
+  - otel: http.server.request.duration
+    micrometer: http.server.requests
+    relation: direct
+    note: >
+      same server-request duration, comparable instrument + unit (OTel histogram `s` vs Micrometer
+      Timer `seconds`). Differs only in naming and attribute model (semconv http.request.method/
+      http.route vs Micrometer uri/status/method/outcome). Spring WebMVC.
+  - {otel: http.server.active_requests, micrometer: http.server.requests.active, relation: partial, note: "in-flight server requests; OTel updowncounter vs Micrometer LongTaskTimer active count."}
+  - {otel: http.client.request.duration, micrometer: okhttp.requests, relation: direct, note: "OkHttp client request duration; OkHttpMetricsEventListener Timer (seconds) == OTel histogram (s)."}
+  - {otel: http.client.request.duration, micrometer: httpcomponents.httpclient.request, relation: direct, note: "Apache HC5 client request duration (seconds == s). Source MicrometerHttpRequestExecutor is deprecated → ObservationExecChainHandler."}
+  - otel: http.client.request.duration
+    micrometer: http.client.requests
+    relation: direct
+    note: >
+      client-request duration via the instrumented RestTemplate; comparable instrument + unit
+      (OTel histogram `s` vs Micrometer Timer `seconds`), differing in naming/attribute model. Spring.

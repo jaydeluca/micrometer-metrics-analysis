@@ -1,0 +1,11 @@
+.gradle/
+build/
+*.class
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Note: inventory/ is intentionally committed (version-stamped capture output).

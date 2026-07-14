@@ -1,0 +1,48 @@
+# Single source of truth for pinned versions.
+# M6 (version matrix) bumps `micrometer` here and re-runs the capture.
+[versions]
+micrometer = "1.17.0"
+jackson = "2.17.2"
+logback = "1.5.6"
+log4j = "2.23.1"
+# Tier 1 target libraries. The Micrometer binders ship in micrometer-core; these are the
+# real library objects the binders read from.
+caffeine = "3.1.8"
+guava = "33.3.1-jre"
+commons-pool2 = "2.12.0"
+netty = "4.1.114.Final"
+okhttp = "4.12.0"
+hikaricp = "5.1.0"
+h2 = "2.2.224"
+# Tier 2 (Testcontainers + real traffic)
+testcontainers = "1.20.4"
+kafka = "3.8.1"
+grpc = "1.68.1"
+httpclient5 = "5.4.1"
+spring-boot = "3.5.0"
+
+[libraries]
+micrometer-core = { module = "io.micrometer:micrometer-core", version.ref = "micrometer" }
+micrometer-java21 = { module = "io.micrometer:micrometer-java21", version.ref = "micrometer" }
+micrometer-registry-otlp = { module = "io.micrometer:micrometer-registry-otlp", version.ref = "micrometer" }
+jackson-databind = { module = "com.fasterxml.jackson.core:jackson-databind", version.ref = "jackson" }
+logback-classic = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+log4j-core = { module = "org.apache.logging.log4j:log4j-core", version.ref = "log4j" }
+log4j-api = { module = "org.apache.logging.log4j:log4j-api", version.ref = "log4j" }
+# Tier 1
+caffeine = { module = "com.github.ben-manes.caffeine:caffeine", version.ref = "caffeine" }
+guava = { module = "com.google.guava:guava", version.ref = "guava" }
+commons-pool2 = { module = "org.apache.commons:commons-pool2", version.ref = "commons-pool2" }
+netty-buffer = { module = "io.netty:netty-buffer", version.ref = "netty" }
+netty-transport = { module = "io.netty:netty-transport", version.ref = "netty" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
+hikaricp = { module = "com.zaxxer:HikariCP", version.ref = "hikaricp" }
+h2 = { module = "com.h2database:h2", version.ref = "h2" }
+# Tier 2
+testcontainers = { module = "org.testcontainers:testcontainers", version.ref = "testcontainers" }
+testcontainers-kafka = { module = "org.testcontainers:kafka", version.ref = "testcontainers" }
+kafka-clients = { module = "org.apache.kafka:kafka-clients", version.ref = "kafka" }
+grpc-inprocess = { module = "io.grpc:grpc-inprocess", version.ref = "grpc" }
+grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
+httpclient5 = { module = "org.apache.httpcomponents.client5:httpclient5", version.ref = "httpclient5" }
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }

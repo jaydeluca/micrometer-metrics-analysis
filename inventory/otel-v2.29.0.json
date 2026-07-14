@@ -1,0 +1,2665 @@
+{
+  "header": {
+    "registryVersion": "v2.29.0",
+    "registryCommit": "d6cc07ad",
+    "registryPath": "ecosystem-registry/java/javaagent/v2.29.0/instrumentation.yaml",
+    "extractedAt": "2026-06-25T15:10:54.421085+00:00",
+    "totalLibraries": 248,
+    "librariesWithMetrics": 110,
+    "totalMetricEntries": 285,
+    "uniqueRecords": 121,
+    "uniqueMetricNames": 77,
+    "recordsByTechnology": {
+      "db.client": 2,
+      "db.pool": 18,
+      "genai": 2,
+      "http.client": 6,
+      "http.server": 6,
+      "iceberg": 7,
+      "jvm": 38,
+      "messaging": 6,
+      "resilience": 4,
+      "rpc": 16,
+      "system": 16
+    },
+    "source": "ecosystem-registry"
+  },
+  "meters": [
+    {
+      "name": "db.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.collection.name",
+        "db.namespace",
+        "db.operation.name",
+        "db.query.summary",
+        "db.system.name",
+        "network.peer.address",
+        "network.peer.port",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of database client operations.",
+      "technology": "db.client",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "aws-sdk-1.11",
+        "aws-sdk-2.2",
+        "cassandra-3.0",
+        "cassandra-4.0",
+        "cassandra-4.4",
+        "clickhouse-client-v1-0.5",
+        "clickhouse-client-v2-0.8",
+        "couchbase-2.0",
+        "couchbase-2.6",
+        "elasticsearch-api-client-7.16",
+        "elasticsearch-rest-5.0",
+        "elasticsearch-rest-6.4",
+        "elasticsearch-rest-7.0",
+        "elasticsearch-transport-5.0",
+        "elasticsearch-transport-5.3",
+        "elasticsearch-transport-6.0",
+        "geode-1.4",
+        "influxdb-2.4",
+        "jedis-4.0",
+        "lettuce-5.1",
+        "mongo-3.1",
+        "mongo-3.7",
+        "mongo-4.0",
+        "mongo-async-3.3",
+        "opensearch-java-3.0",
+        "opensearch-rest-1.0",
+        "opensearch-rest-3.0",
+        "rediscala-1.8",
+        "redisson-3.0",
+        "redisson-3.17",
+        "spymemcached-2.12"
+      ],
+      "cite": "instrumentation.yaml:2375",
+      "source": "registry",
+      "libraryCount": 31
+    },
+    {
+      "name": "db.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.namespace",
+        "db.operation.name",
+        "db.query.summary",
+        "db.system.name",
+        "network.peer.address",
+        "network.peer.port",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of database client operations.",
+      "technology": "db.client",
+      "when": "otel.semconv-stability.opt-in=database,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "jdbc",
+        "jedis-1.4",
+        "jedis-3.0",
+        "lettuce-4.0",
+        "lettuce-5.0",
+        "r2dbc-1.0",
+        "vertx-redis-client-4.0",
+        "vertx-sql-client-4.0",
+        "vertx-sql-client-5.0"
+      ],
+      "cite": "instrumentation.yaml:7400",
+      "source": "registry",
+      "libraryCount": 9
+    },
+    {
+      "name": "db.client.connection.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name",
+        "db.client.connection.state"
+      ],
+      "description": "The number of connections that are currently in state described by the state attribute.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:424",
+      "source": "registry",
+      "libraryCount": 7
+    },
+    {
+      "name": "db.client.connection.create_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The time it took to create a new connection.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6170",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connection.idle.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The maximum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:435",
+      "source": "registry",
+      "libraryCount": 3
+    },
+    {
+      "name": "db.client.connection.idle.min",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The minimum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:443",
+      "source": "registry",
+      "libraryCount": 4
+    },
+    {
+      "name": "db.client.connection.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The maximum number of open connections allowed.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:451",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "db.client.connection.pending_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{request}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The number of current pending requests for an open connection.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:459",
+      "source": "registry",
+      "libraryCount": 5
+    },
+    {
+      "name": "db.client.connection.timeouts",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{timeout}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6202",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connection.use_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The time between borrowing a connection and returning it to the pool.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6211",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connection.wait_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The time it took to obtain an open connection from the pool.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6220",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.create_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The time it took to create a new connection.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6087",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.idle.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The maximum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:378",
+      "source": "registry",
+      "libraryCount": 3
+    },
+    {
+      "name": "db.client.connections.idle.min",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The minimum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:386",
+      "source": "registry",
+      "libraryCount": 4
+    },
+    {
+      "name": "db.client.connections.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The maximum number of open connections allowed.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:394",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "db.client.connections.pending_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{requests}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:402",
+      "source": "registry",
+      "libraryCount": 5
+    },
+    {
+      "name": "db.client.connections.timeouts",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{timeouts}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6120",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.usage",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name",
+        "state"
+      ],
+      "description": "The number of connections that are currently in state described by the state attribute.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:411",
+      "source": "registry",
+      "libraryCount": 7
+    },
+    {
+      "name": "db.client.connections.use_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The time between borrowing a connection and returning it to the pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6140",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.wait_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The time it took to obtain an open connection from the pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:6149",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "gen_ai.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "gen_ai.operation.name",
+        "gen_ai.provider.name",
+        "gen_ai.request.model",
+        "gen_ai.response.model"
+      ],
+      "description": "GenAI operation duration.",
+      "technology": "genai",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "aws-sdk-2.2",
+        "openai-java-1.1"
+      ],
+      "cite": "instrumentation.yaml:2548",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "gen_ai.client.token.usage",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "{token}",
+      "attributeKeys": [
+        "gen_ai.operation.name",
+        "gen_ai.provider.name",
+        "gen_ai.request.model",
+        "gen_ai.response.model",
+        "gen_ai.token.type"
+      ],
+      "description": "Measures number of input and output tokens used.",
+      "technology": "genai",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "aws-sdk-2.2",
+        "openai-java-1.1"
+      ],
+      "cite": "instrumentation.yaml:2560",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "network.protocol.version",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "akka-http-10.0",
+        "apache-httpasyncclient-4.1",
+        "apache-httpclient-2.0",
+        "apache-httpclient-4.0",
+        "apache-httpclient-4.3",
+        "apache-httpclient-5.0",
+        "apache-httpclient-5.2",
+        "armeria-1.3",
+        "async-http-client-1.8",
+        "async-http-client-1.9",
+        "async-http-client-2.0",
+        "google-http-client-1.19",
+        "http-url-connection",
+        "java-http-client",
+        "jetty-httpclient-12.0",
+        "jetty-httpclient-9.2",
+        "jodd-http-4.2",
+        "ktor-2.0",
+        "ktor-3.0",
+        "kubernetes-client-7.0",
+        "netty-3.8",
+        "netty-4.0",
+        "netty-4.1",
+        "okhttp-2.2",
+        "okhttp-3.0",
+        "pekko-http-1.0",
+        "play-ws-1.0",
+        "play-ws-2.0",
+        "play-ws-2.1",
+        "ratpack-1.7",
+        "reactor-netty-1.0",
+        "spring-web-3.1",
+        "spring-webflux-5.3",
+        "vertx-http-client-3.0",
+        "vertx-http-client-4.0",
+        "vertx-http-client-5.0"
+      ],
+      "cite": "instrumentation.yaml:195",
+      "source": "registry",
+      "libraryCount": 36
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ratpack-1.7",
+        "spring-webflux-5.0"
+      ],
+      "cite": "instrumentation.yaml:13216",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true,otel.semconv-stability.opt-in=service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "spring-webflux-5.0"
+      ],
+      "cite": "instrumentation.yaml:15607",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "network.protocol.version",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:9335",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.kubernetes-client.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "kubernetes-client-7.0"
+      ],
+      "cite": "instrumentation.yaml:9537",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "network.protocol.version",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.semconv-stability.opt-in=service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "akka-http-10.0",
+        "apache-httpasyncclient-4.1",
+        "apache-httpclient-2.0",
+        "apache-httpclient-4.0",
+        "apache-httpclient-5.0",
+        "armeria-1.3",
+        "async-http-client-1.8",
+        "async-http-client-1.9",
+        "async-http-client-2.0",
+        "jetty-httpclient-12.0",
+        "jetty-httpclient-9.2",
+        "okhttp-2.2",
+        "okhttp-3.0",
+        "spring-web-3.1",
+        "spring-webflux-5.3",
+        "vertx-http-client-3.0",
+        "vertx-http-client-4.0",
+        "vertx-http-client-5.0"
+      ],
+      "cite": "instrumentation.yaml:274",
+      "source": "registry",
+      "libraryCount": 18
+    },
+    {
+      "name": "http.server.active_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{requests}",
+      "attributeKeys": [
+        "http.request.method",
+        "url.scheme"
+      ],
+      "description": "Number of active HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:9351",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "activej-http-6.0",
+        "akka-http-10.0",
+        "armeria-1.3",
+        "grizzly-2.3",
+        "helidon-4.3",
+        "java-http-server",
+        "jetty-11.0",
+        "jetty-12.0",
+        "jetty-8.0",
+        "ktor-1.0",
+        "ktor-2.0",
+        "ktor-3.0",
+        "netty-3.8",
+        "netty-4.0",
+        "netty-4.1",
+        "pekko-http-1.0",
+        "ratpack-1.7",
+        "restlet-1.1",
+        "restlet-2.0",
+        "servlet-2.2",
+        "servlet-3.0",
+        "spring-webflux-5.3",
+        "spring-webmvc-5.3",
+        "tomcat-10.0",
+        "tomcat-7.0",
+        "undertow-1.4"
+      ],
+      "cite": "instrumentation.yaml:46",
+      "source": "registry",
+      "libraryCount": 26
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:9361",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.servlet.experimental.capture-request-parameters=test-parameter",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "servlet-5.0"
+      ],
+      "cite": "instrumentation.yaml:14705",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.semconv-stability.opt-in=service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "akka-http-10.0",
+        "armeria-1.3",
+        "spring-webflux-5.3"
+      ],
+      "cite": "instrumentation.yaml:290",
+      "source": "registry",
+      "libraryCount": 3
+    },
+    {
+      "name": "http.server.response.body.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Size of HTTP server response bodies.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:9377",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.data_files.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of data files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6362",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.data_files.size",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The total size of all scanned data files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6374",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.data_manifests.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of data manifests.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6384",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.delete_files.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.delete_file.type",
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of delete files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6396",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.delete_files.size",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The total size of all scanned delete files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6410",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.delete_manifests.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of delete manifests.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6420",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.planning.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The total duration needed to plan the scan.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:6432",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{buffer}",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Number of buffers in the pool.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14089",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{buffer}",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Number of buffers in the pool.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14235",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of total memory capacity of buffers.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14097",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of total memory capacity of buffers.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14243",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of memory used by buffers.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14105",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of memory used by buffers.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14251",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes currently loaded.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14113",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes currently loaded.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14259",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.loaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes loaded since JVM start.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14119",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.loaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes loaded since JVM start.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14265",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.unloaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes unloaded since JVM start.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14125",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.unloaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes unloaded since JVM start.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14271",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{cpu}",
+      "attributeKeys": [],
+      "description": "Number of processors available to the Java virtual machine.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14131",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{cpu}",
+      "attributeKeys": [],
+      "description": "Number of processors available to the Java virtual machine.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14277",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.longlock",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [],
+      "description": "Long lock times",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14137",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.recent_utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14143",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.recent_utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14283",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.time",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "s",
+      "attributeKeys": [],
+      "description": "CPU time used by the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14149",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.time",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "s",
+      "attributeKeys": [],
+      "description": "CPU time used by the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14289",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.file_descriptor.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{file_descriptor}",
+      "attributeKeys": [],
+      "description": "Number of open file descriptors as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14295",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.file_descriptor.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{file_descriptor}",
+      "attributeKeys": [],
+      "description": "Measure of max open file descriptors as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14301",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.gc.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "jvm.gc.action",
+        "jvm.gc.name"
+      ],
+      "description": "Duration of JVM garbage collection actions.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14155",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.gc.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "jvm.gc.action",
+        "jvm.gc.cause",
+        "jvm.gc.name"
+      ],
+      "description": "Duration of JVM garbage collection actions.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14307",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.committed",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory committed.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14165",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.committed",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory committed.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14319",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.init",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of initial memory requested.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14175",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.init",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of initial memory requested.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14329",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of max obtainable memory.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14185",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of max obtainable memory.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14339",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14195",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14349",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used_after_last_gc",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used, as measured after the most recent garbage collection event on this pool.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14205",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used_after_last_gc",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used, as measured after the most recent garbage collection event on this pool.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14359",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.system.cpu.load_1m",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "{run_queue_item}",
+      "attributeKeys": [],
+      "description": "Average CPU load of the whole system for the last minute as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14370",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.system.cpu.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the whole system as reported by the JVM.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14216",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.system.cpu.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the whole system as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14377",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.thread.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{thread}",
+      "attributeKeys": [
+        "jvm.thread.daemon",
+        "jvm.thread.state"
+      ],
+      "description": "Number of executing platform threads.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14223",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.thread.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{thread}",
+      "attributeKeys": [
+        "jvm.thread.daemon",
+        "jvm.thread.state"
+      ],
+      "description": "Number of executing platform threads.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:14384",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.publish.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of publish operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:12555",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.publish.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of publish operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:12644",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of receive operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:12571",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of receive operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:12660",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the number of received messages.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:12587",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the number of received messages.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:12676",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.circuit_breaker.execution.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{execution}",
+      "attributeKeys": [
+        "failsafe.circuit_breaker.name",
+        "failsafe.circuit_breaker.outcome"
+      ],
+      "description": "Count of circuit breaker executions.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:4912",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.circuit_breaker.state_change.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{execution}",
+      "attributeKeys": [
+        "failsafe.circuit_breaker.name",
+        "failsafe.circuit_breaker.state"
+      ],
+      "description": "Count of circuit breaker state changes.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:4922",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.retry_policy.attempts",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "{attempt}",
+      "attributeKeys": [
+        "failsafe.retry_policy.name",
+        "failsafe.retry_policy.outcome"
+      ],
+      "description": "Number of attempts for each execution.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:4932",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.retry_policy.execution.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{execution}",
+      "attributeKeys": [
+        "failsafe.retry_policy.name",
+        "failsafe.retry_policy.outcome"
+      ],
+      "description": "Count of execution attempts processed by the retry policy, where one execution represents the total number of attempts.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:4942",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.response.status_code",
+        "rpc.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of outbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5730",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of outbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "apache-dubbo-2.7"
+      ],
+      "cite": "instrumentation.yaml:654",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an outbound RPC invocation.",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "apache-dubbo-2.7",
+        "grpc-1.6",
+        "sofa-rpc-5.4"
+      ],
+      "cite": "instrumentation.yaml:597",
+      "source": "registry",
+      "libraryCount": 3
+    },
+    {
+      "name": "rpc.client.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an outbound RPC invocation.",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5571",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5438",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5589",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5456",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5607",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.response.status_code",
+        "rpc.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of inbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5746",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.system.name"
+      ],
+      "description": "Measures the duration of inbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "apache-dubbo-2.7"
+      ],
+      "cite": "instrumentation.yaml:668",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an inbound RPC invocation.",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "apache-dubbo-2.7",
+        "grpc-1.6",
+        "sofa-rpc-5.4"
+      ],
+      "cite": "instrumentation.yaml:613",
+      "source": "registry",
+      "libraryCount": 3
+    },
+    {
+      "name": "rpc.server.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an inbound RPC invocation.",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5625",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5494",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5645",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5514",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5665",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "runtime.java.cpu_time",
+      "instrument": "gauge",
+      "dataType": "LONG_GAUGE",
+      "unit": "ms",
+      "attributeKeys": [
+        "type"
+      ],
+      "description": "Runtime Java CPU time",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11879",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "runtime.java.memory",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "type"
+      ],
+      "description": "Runtime Java memory",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11887",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk IO",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11811",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk IO",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11895",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.operations",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{operations}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk operations",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11821",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.operations",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{operations}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk operations",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11905",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.usage",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory usage",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11831",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.usage",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory usage",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11915",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory utilization",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11839",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory utilization",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11923",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.errors",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{errors}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network errors",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11847",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.errors",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{errors}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network errors",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11931",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network IO",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11857",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network IO",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11941",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.packets",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{packets}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network packets",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11867",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.packets",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{packets}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network packets",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:11951",
+      "source": "registry",
+      "libraryCount": 1
+    }
+  ]
+}

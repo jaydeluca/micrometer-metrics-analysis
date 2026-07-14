@@ -1,0 +1,46 @@
+{
+  "header" : {
+    "micrometerVersion" : "1.17.0",
+    "capturedAt" : "2026-06-25T15:09:29.547595Z",
+    "jdk" : "21",
+    "os" : "Mac OS X aarch64",
+    "totalMeters" : 2,
+    "coverage" : [ {
+      "tier" : 2,
+      "bindersAttempted" : 2,
+      "bindersSucceeded" : 2,
+      "bindersFailed" : 0,
+      "metersCaptured" : 2,
+      "failures" : [ ]
+    } ]
+  },
+  "meters" : [ {
+    "name" : "httpcomponents.httpclient.request",
+    "meterType" : "TIMER",
+    "baseUnit" : "seconds",
+    "tagKeys" : [ "method", "outcome", "status", "uri" ],
+    "description" : "Duration of Apache HttpClient request execution",
+    "emittedBy" : "io.micrometer.core.instrument.binder.httpcomponents.hc5.MicrometerHttpRequestExecutor",
+    "technology" : "http.client",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  }, {
+    "name" : "okhttp.requests",
+    "meterType" : "TIMER",
+    "baseUnit" : "seconds",
+    "tagKeys" : [ "host", "method", "outcome", "status", "target.host", "target.port", "target.scheme", "uri" ],
+    "description" : "Timer of OkHttp operation",
+    "emittedBy" : "io.micrometer.core.instrument.binder.okhttp3.OkHttpMetricsEventListener",
+    "technology" : "http.client",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  } ]
+}

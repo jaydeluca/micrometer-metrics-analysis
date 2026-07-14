@@ -1,0 +1,102 @@
+{
+  "header" : {
+    "micrometerVersion" : "1.17.0",
+    "capturedAt" : "2026-06-25T15:09:29.199456Z",
+    "jdk" : "21",
+    "os" : "Mac OS X aarch64",
+    "totalMeters" : 6,
+    "coverage" : [ {
+      "tier" : 2,
+      "bindersAttempted" : 1,
+      "bindersSucceeded" : 1,
+      "bindersFailed" : 0,
+      "metersCaptured" : 6,
+      "failures" : [ ]
+    } ]
+  },
+  "meters" : [ {
+    "name" : "grpc.client.processing.duration",
+    "meterType" : "TIMER",
+    "baseUnit" : "seconds",
+    "tagKeys" : [ "method", "methodType", "service", "statusCode" ],
+    "description" : "The total time taken for the client to complete the call, including network delay",
+    "emittedBy" : "io.micrometer.core.instrument.binder.grpc.MetricCollecting{Client,Server}Interceptor",
+    "technology" : "rpc",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  }, {
+    "name" : "grpc.client.requests.sent",
+    "meterType" : "COUNTER",
+    "baseUnit" : "messages",
+    "tagKeys" : [ "method", "methodType", "service" ],
+    "description" : "The total number of requests sent",
+    "emittedBy" : "io.micrometer.core.instrument.binder.grpc.MetricCollecting{Client,Server}Interceptor",
+    "technology" : "rpc",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  }, {
+    "name" : "grpc.client.responses.received",
+    "meterType" : "COUNTER",
+    "baseUnit" : "messages",
+    "tagKeys" : [ "method", "methodType", "service" ],
+    "description" : "The total number of responses received",
+    "emittedBy" : "io.micrometer.core.instrument.binder.grpc.MetricCollecting{Client,Server}Interceptor",
+    "technology" : "rpc",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  }, {
+    "name" : "grpc.server.processing.duration",
+    "meterType" : "TIMER",
+    "baseUnit" : "seconds",
+    "tagKeys" : [ "method", "methodType", "service", "statusCode" ],
+    "description" : "The total time taken for the server to complete the call",
+    "emittedBy" : "io.micrometer.core.instrument.binder.grpc.MetricCollecting{Client,Server}Interceptor",
+    "technology" : "rpc",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  }, {
+    "name" : "grpc.server.requests.received",
+    "meterType" : "COUNTER",
+    "baseUnit" : "messages",
+    "tagKeys" : [ "method", "methodType", "service" ],
+    "description" : "The total number of requests received",
+    "emittedBy" : "io.micrometer.core.instrument.binder.grpc.MetricCollecting{Client,Server}Interceptor",
+    "technology" : "rpc",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  }, {
+    "name" : "grpc.server.responses.sent",
+    "meterType" : "COUNTER",
+    "baseUnit" : "messages",
+    "tagKeys" : [ "method", "methodType", "service" ],
+    "description" : "The total number of responses sent",
+    "emittedBy" : "io.micrometer.core.instrument.binder.grpc.MetricCollecting{Client,Server}Interceptor",
+    "technology" : "rpc",
+    "conventionVariant" : "micrometer",
+    "deprecated" : false,
+    "captureTier" : 2,
+    "micrometerVersion" : "1.17.0",
+    "jdk" : "21",
+    "source" : "runtime"
+  } ]
+}

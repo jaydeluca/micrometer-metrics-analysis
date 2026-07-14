@@ -1,0 +1,12 @@
+<configuration>
+    <!-- Keeps console output quiet; LogbackMetrics counts events at the TurboFilter stage
+         regardless of appender threshold, and the harness raises the level to TRACE while driving. -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%-5level %logger{0} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
