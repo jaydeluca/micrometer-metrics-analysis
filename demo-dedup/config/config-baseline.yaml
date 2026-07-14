@@ -1,0 +1,23 @@
+# BASELINE demo config: agent + Micrometer bridge, NO dedup views.
+#
+# Under declarative config the SDK env vars are ignored, so we must (a) turn the Micrometer bridge on
+# in YAML — it is off by default — via distribution.javaagent.instrumentation.enabled, and (b) pick a
+# metric exporter. The otlp_file/development exporter emits the OTLP payload (which preserves each
+# metric's instrumentation scope) as JSON via the agent's logger; run-demo.sh captures that output.
+# tracer/logger providers are omitted (=> no-op): this demo only inspects metrics.
+file_format: "1.0"
+disabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

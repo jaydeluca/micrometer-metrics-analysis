@@ -1,0 +1,68 @@
+# DEDUPED demo config: agent + Micrometer bridge, WITH the dedup views.
+# Identical to config-baseline.yaml except for the meter_provider.views block below, whose selectors
+# are copied verbatim from the deliverable
+#   projects/micrometer-otel-metrics-comparison/output/micrometer-dedup-config/otel-javaagent-micrometer-dedup.yaml
+# (only the exporter differs — the deliverable ships OTLP/HTTP; here we write OTLP JSON to a file so
+# the demo can assert on the output). Keeping the selectors verbatim means this run validates the
+# real shipped config, not a trimmed copy. Views that don't match anything the demo app emits
+# (hikari/jdbc/http/grpc/kafka) are harmless no-ops.
+file_format: "1.0"
+disabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative
+
+  views:
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.memory.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.buffer.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.classes.loaded }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.classes.unloaded }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.gc.pause* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.threads.live }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: process.cpu.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: process.files.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: system.* }
+      stream: { aggregation: { drop: {} } }
+    # http.*.requests: exact + explicit `.max` companion (NOT a glob — a glob would also catch the
+    # `.active` LongTaskTimer, which we intentionally leave to the optional block / keep).
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: http.server.requests }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: http.server.requests.max }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: http.client.requests }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: http.client.requests.max }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: okhttp.requests* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: httpcomponents.httpclient.request* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: hikaricp.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jdbc.connections.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: grpc.client.processing.duration* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: grpc.server.processing.duration* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: kafka.* }
+      stream: { aggregation: { drop: {} } }
