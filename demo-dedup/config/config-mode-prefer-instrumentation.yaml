@@ -1,0 +1,31 @@
+# SPIKE config: agent + Micrometer bridge, NO views — the bridge decides for itself.
+#
+# The counterpart of config-deduped.yaml. That file expresses the drop-set as 80 lines of SDK views
+# plus the SDK scaffolding those views drag in; this file expresses it as one setting and lets the
+# bridge suppress on registration instead. Everything else is byte-identical to config-baseline.yaml
+# so that a diff of the two captures isolates the mode.
+#
+# Requires an agent built from the metric-bridge-interop/prefer-instrumentation-spike branch. On a
+# stock agent the mode node is simply unread, and the run degrades to the baseline.
+file_format: "1.0"
+disabled: false
+
+instrumentation/development:
+  java:
+    micrometer:
+      metrics/development:
+        mode: prefer-instrumentation
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

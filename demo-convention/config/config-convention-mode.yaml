@@ -1,0 +1,47 @@
+# Convention-collision probe WITH the mode on (metric-bridge-interop, stage 04, resolver rule 2).
+#
+# Byte-identical to config-convention.yaml apart from the metrics/development.mode node, so a diff
+# of the two captures isolates the resolver's second, name-symmetric rule. That rule is the only
+# thing that can act here: the app's convention bean renames the meter onto an agent metric name,
+# which moves the key out of the Micrometer-keyed drop-set entirely.
+#
+# Requires an agent built from the metric-bridge-interop/prefer-instrumentation-spike branch.
+#
+# `micrometer` enables two modules that share the instrumentation name: MicrometerInstrumentationModule
+# and SpringBootActuatorInstrumentationModule. The latter is defaultEnabled() == false — with the
+# comment "produces a lot of metrics that are already captured - e.g. JVM memory usage" — and is what
+# injects the bridge registry as a Spring bean, so Boot's meters reach the bridge at all.
+file_format: "1.0"
+disabled: false
+
+# Set here, not with -Dotel.service.name: once a config file is active the agent stops reading the
+# SDK system properties and OTEL_* variables (the FM-3 trap, verified in
+# research/20260825-worked-misconfiguration.md).
+resource:
+  attributes:
+    - name: service.name
+      value: micrometer-convention-probe
+
+instrumentation/development:
+  java:
+    common:
+      v3_preview: false
+    micrometer:
+      prometheus_mode:
+        enabled: false
+      metrics/development:
+        mode: prefer-instrumentation
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

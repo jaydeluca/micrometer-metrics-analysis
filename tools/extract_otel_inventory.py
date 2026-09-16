@@ -6,11 +6,20 @@ Micrometer inventory is derived by binding meters and reading them back, the OTe
 derived from the registry that the agent's integration tests already produce. The output is shaped
 to join cleanly against ``inventory/micrometer-*.json`` (see ``tools/compare.py``).
 
-The registry stores metrics at ``libraries[].telemetry[].metrics[]``; each ``telemetry`` block has
-a ``when:`` condition (``default``, a config-flag gate, a ``otel.semconv-stability.opt-in=...`` gate,
-or a ``JavaNN`` runtime gate). The same metric name is declared by many libraries and under several
-``when`` conditions, so we collapse to one record per ``(name, when)`` and aggregate the declaring
-libraries.
+The registry stores metrics per library under a ``telemetry`` block carrying a ``when:`` condition
+(``default``, a config-flag gate, a ``otel.semconv-stability.opt-in=...`` gate, or a ``JavaNN``
+runtime gate). The same metric name is declared by many libraries and under several ``when``
+conditions, so we collapse to one record per ``(name, when)`` and aggregate the declaring libraries.
+
+Two registry file formats are supported:
+
+* **0.5 and earlier** inline the definitions at ``libraries[].telemetry[].metrics[]``.
+* **0.6** (first seen in ``v2.31.0``) hoists shared definitions into a top-level
+  ``definitions.metrics`` catalog and references them by id from
+  ``libraries[].telemetry[].metric_refs[]``. We resolve those refs against the catalog, matching
+  the explorer's own resolver in
+  ``ecosystem-automation/explorer-db-builder/.../instrumentation_transformer.py``
+  (unknown refs are warned about and skipped, never fatal).
 
 Usage:
     python3 tools/extract_otel_inventory.py \
@@ -86,11 +95,23 @@ def bucket_for(name: str) -> str:
 
 
 def gate_for(when: str) -> str:
-    """Coarse category of a ``when`` condition, for filtering / display."""
+    """Coarse category of a ``when`` condition, for filtering / display.
+
+    The categories are chosen to answer "under which agent configuration does the agent actually
+    emit this?", because a consumer deciding whether a bridged duplicate can be dropped needs to
+    know whether the native copy is present. Note ``semconv-stability`` has two spellings in the
+    registry — the older ``opt-in=`` and the newer ``preview=`` (which carries 171 of 302 records
+    at v2.31.1, nearly all Kafka) — and both are semconv-stability gates rather than
+    per-instrumentation experimental toggles.
+    """
     if when == "default":
         return "default"
     if "semconv-stability.opt-in" in when:
         return "semconv-opt-in"
+    if "semconv-stability.preview" in when:
+        return "semconv-preview"
+    if "common.v3-preview" in when:
+        return "v3-preview"
     if re.fullmatch(r"Java\d+", when or ""):
         return "java-version"
     return "experimental-flag"
@@ -147,6 +168,28 @@ def main():
     data = yaml.load(yaml_path.read_text(), Loader=LineLoader)
     libraries = data["libraries"]
 
+    # Registry file_format 0.6 (first seen in v2.31.0) deduplicated metric definitions into a
+    # top-level `definitions.metrics` map keyed by `<name>-<hash>`, and replaced the inline
+    # `telemetry[].metrics[]` list with `telemetry[].metric_refs[]` naming those keys. 0.5 and
+    # earlier inline the definitions. Support both: resolve refs here, and let the loop below treat
+    # the resolved definition exactly like an inline one.
+    file_format = str(data.get("file_format", "0.5"))
+    definition_metrics = ((data.get("definitions") or {}).get("metrics") or {})
+    unresolved_refs: set[str] = set()
+
+    def metrics_of(tel: dict) -> list[dict]:
+        """Metric definitions declared by one telemetry block, in either file format."""
+        resolved = [m for m in (tel.get("metrics") or []) if isinstance(m, dict)]
+        for ref in tel.get("metric_refs") or []:
+            definition = definition_metrics.get(ref)
+            if isinstance(definition, dict):
+                # Citation points at the definition rather than the usage site — in 0.6 there is
+                # exactly one definition per distinct metric shape, so this is the better anchor.
+                resolved.append(definition)
+            else:
+                unresolved_refs.add(str(ref))
+        return resolved
+
     # Collapse libraries[].telemetry[].metrics[] to one record per (name, when), aggregating the
     # declaring libraries. The first declaration wins for instrument/data_type/unit/description and
     # supplies the citation line; divergences are recorded so they surface rather than hide.
@@ -154,11 +197,14 @@ def main():
     total_entries = 0
     libs_with_metrics = set()
 
-    for lib in libraries:
+    # `custom` holds non-library entries (methods, external-annotations, jmx-metrics, ...). None
+    # declare metrics at v2.31.1, but the explorer's own resolver walks it too, so walk it here
+    # rather than let a future format change silently drop metrics.
+    for lib in [*libraries, *(data.get("custom") or [])]:
         lib_id = Path(lib["source_path"]).name if lib.get("source_path") else lib.get("display_name", "?")
         for tel in lib.get("telemetry") or []:
             when = tel.get("when", "default")
-            metrics = tel.get("metrics") or []
+            metrics = metrics_of(tel)
             for m in metrics:
                 if not isinstance(m, dict) or "name" not in m:
                     continue
@@ -212,6 +258,7 @@ def main():
     inventory = {
         "header": {
             "registryVersion": version,
+            "fileFormat": file_format,
             "registryCommit": git_short_sha(registry_root),
             "registryPath": str(yaml_path.relative_to(registry_root)),
             "extractedAt": datetime.datetime.now(datetime.timezone.utc).isoformat(),
@@ -228,9 +275,17 @@ def main():
 
     out_path.write_text(json.dumps(inventory, indent=2) + "\n")
 
+    if unresolved_refs:
+        print(
+            f"  WARNING: {len(unresolved_refs)} metric_ref(s) had no definition and were skipped: "
+            + ", ".join(sorted(unresolved_refs)[:5])
+            + (" ..." if len(unresolved_refs) > 5 else ""),
+            file=sys.stderr,
+        )
+
     h = inventory["header"]
     print(f"wrote {out_path}")
-    print(f"  registry {version} @ {h['registryCommit']}")
+    print(f"  registry {version} (file_format {h['fileFormat']}) @ {h['registryCommit']}")
     print(f"  {h['totalLibraries']} libraries, {h['librariesWithMetrics']} emit metrics")
     print(f"  {h['totalMetricEntries']} entries -> {h['uniqueRecords']} (name,when) records, "
           f"{h['uniqueMetricNames']} unique names")

@@ -1,0 +1,35 @@
+# PREFIX EXPERIMENT (explicit): the ONLY way views can prefix — one view per metric, literal names.
+#
+# This proves the View rename mechanism itself works; what it does NOT scale to is "all metrics".
+# Each view targets exactly one instrument by exact name and sets a fixed prefixed name. A mix of
+# instrument kinds is included on purpose (sum, gauge, histogram) to show the rename is kind-agnostic
+# when the target name is unique. To prefix the WHOLE bridge surface you would have to enumerate every
+# metric name like this by hand — and silently miss any metric you forgot to list.
+file_format: "1.0"
+disabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative
+
+  views:
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: cache.gets }
+      stream: { name: micrometer.cache.gets }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: cache.size }
+      stream: { name: micrometer.cache.size }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: process.uptime }
+      stream: { name: micrometer.process.uptime }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.threads.daemon }
+      stream: { name: micrometer.jvm.threads.daemon }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.gc.pause }
+      stream: { name: micrometer.jvm.gc.pause }

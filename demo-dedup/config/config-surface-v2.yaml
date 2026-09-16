@@ -1,0 +1,27 @@
+# Surface capture A: Micrometer bridge on, v3-preview OFF, prometheus_mode OFF (today's default).
+# Paired with config-surface-v3.yaml to diff the bridge's emitted surface across
+# otel.instrumentation.common.v3-preview (work-stream 01, task 1.3).
+file_format: "1.0"
+disabled: false
+
+instrumentation/development:
+  java:
+    common:
+      v3_preview: false
+    micrometer:
+      prometheus_mode:
+        enabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

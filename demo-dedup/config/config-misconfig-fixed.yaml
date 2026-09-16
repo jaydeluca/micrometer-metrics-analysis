@@ -1,0 +1,27 @@
+# THE FIX (work-stream 01, task 1.2) — identical to config-misconfig-naive.yaml plus five lines.
+#
+# `distribution.javaagent.instrumentation.enabled: [micrometer]` is what
+# -Dotel.instrumentation.micrometer.enabled=true meant before declarative config was turned on.
+# Nothing else changes. Finding those five lines requires knowing that the property you already set
+# has silently stopped being read — which is the failure mode, not the fix.
+file_format: "1.0"
+disabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  views:
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.memory.* }
+      stream: { aggregation: { drop: {} } }
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.gc.pause }
+      stream: { aggregation: { drop: {} } }
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

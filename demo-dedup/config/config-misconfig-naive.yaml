@@ -1,0 +1,38 @@
+# THE MISCONFIGURATION (work-stream 01, task 1.2).
+#
+# What a competent user writes when they follow the only advice available today — "drop the bridged
+# duplicates with SDK views". Views require declarative config, so they add
+# -Dotel.experimental.config.file=<this> to a command line that already carries
+# -Dotel.instrumentation.micrometer.enabled=true, and re-declare the exporter because they were told
+# declarative config replaces the OTEL_* SDK vars.
+#
+# Every line here is correct in isolation. The bug is what is ABSENT: with a config file active the
+# agent stops consulting otel.instrumentation.*.enabled and reads
+# `distribution.javaagent.instrumentation.enabled` instead (OpenTelemetryInstaller.java:38-48,
+# AgentDistributionConfig.java:131-142). The Micrometer bridge is off by default, so it never starts
+# — silently, with no warning on either side.
+#
+# The user's duplicate metrics do disappear. So do their custom business metrics.
+#
+# `file_format: "1.0"` is kept deliberately. It is what the predecessor project's deliverable ships
+# (2.29.0 hard-fails on "1.1"), and on 2.31.1 it produces the run's ONLY warning — about the format
+# version, not about the missing bridge. That misdirection is part of what is being demonstrated.
+file_format: "1.0"
+disabled: false
+
+meter_provider:
+  views:
+    # Drop the bridged copy of the JVM memory metrics, keeping the agent's native copy. The
+    # meter_name guard is what makes this safe: the two copies share a name and differ only in scope.
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.memory.* }
+      stream: { aggregation: { drop: {} } }
+    # Drop the bridged GC pause timer. Written as an EXACT name, which is the natural thing to
+    # write and which leaves the `.max` companion behind — the second trap in this narrative.
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: jvm.gc.pause }
+      stream: { aggregation: { drop: {} } }
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

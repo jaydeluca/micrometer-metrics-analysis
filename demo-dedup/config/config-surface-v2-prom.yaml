@@ -1,0 +1,30 @@
+# Surface capture C: Micrometer bridge on, v3-preview OFF, prometheus_mode ON.
+#
+# prometheus_mode swaps in PrometheusModeNamingConvention, i.e. a NON-identity naming convention.
+# That is the only condition under which Bridging.statisticInstrumentName's v2/v3 ordering
+# difference (Bridging.java:70) is observable at all — with the identity convention both branches
+# produce the same string. Paired with config-surface-v3-prom.yaml.
+file_format: "1.0"
+disabled: false
+
+instrumentation/development:
+  java:
+    common:
+      v3_preview: false
+    micrometer:
+      prometheus_mode:
+        enabled: true
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

@@ -20,6 +20,11 @@ kafka = "3.8.1"
 grpc = "1.68.1"
 httpclient5 = "5.4.1"
 spring-boot = "3.5.0"
+# demo-convention only. Spring's semconv-named observation convention
+# (OpenTelemetryServerRequestObservationConvention) is @since spring-framework 7.0, i.e. Boot 4.x,
+# so it cannot be exercised on the `spring-boot` pin above. Kept as a separate version so tier 3's
+# inventory capture stays on 3.5.0.
+springBoot4 = "4.1.1"
 
 [libraries]
 micrometer-core = { module = "io.micrometer:micrometer-core", version.ref = "micrometer" }
@@ -46,3 +51,5 @@ grpc-inprocess = { module = "io.grpc:grpc-inprocess", version.ref = "grpc" }
 grpc-stub = { module = "io.grpc:grpc-stub", version.ref = "grpc" }
 httpclient5 = { module = "org.apache.httpcomponents.client5:httpclient5", version.ref = "httpclient5" }
 spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+# demo-convention
+springBoot4-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "springBoot4" }
