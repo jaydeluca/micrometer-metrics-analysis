@@ -160,6 +160,9 @@ def main():
     ap.add_argument("--otel", default=default_otel[-1] if default_otel else None,
                     help="OTel inventory JSON (default: latest inventory/otel-*.json)")
     ap.add_argument("--out", default=str(REPO / "output" / "comparison-report.md"))
+    ap.add_argument("--json-out", default=str(REPO / "inventory" / "comparison.json"),
+                    help="machine-readable join output (default: inventory/comparison.json). "
+                         "Point this at a versioned path to keep an older pin's join intact.")
     args = ap.parse_args()
     if not args.otel:
         raise SystemExit("no inventory/otel-*.json found; run tools/extract_otel_inventory.py first")
@@ -249,13 +252,15 @@ def main():
         "capturedTechnologies": sorted(captured_tech),
         "buckets": report,
     }
-    (REPO / "inventory" / "comparison.json").write_text(json.dumps(comparison, indent=2) + "\n")
+    json_out = Path(args.json_out)
+    json_out.parent.mkdir(parents=True, exist_ok=True)
+    json_out.write_text(json.dumps(comparison, indent=2) + "\n")
 
     # ---- markdown report ----
     md = render_markdown(comparison, report)
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text(md)
-    print(f"wrote {args.out} and inventory/comparison.json")
+    print(f"wrote {args.out} and {json_out}")
     print_summary(report, captured_tech)
 
 

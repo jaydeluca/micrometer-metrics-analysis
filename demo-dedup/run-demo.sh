@@ -10,7 +10,8 @@
 # native one.
 #
 # Usage:   ./run-demo.sh
-# Env:     AGENT_VERSION=<x.y.z>   pin an agent release (default: latest)
+# Env:     AGENT_JAR=<path>        use a locally built agent jar instead of downloading one
+#          AGENT_VERSION=<x.y.z>   pin an agent release (default: latest)
 #          DEMO_RUN_MILLIS=15000   how long the app generates activity
 set -euo pipefail
 
@@ -18,7 +19,7 @@ DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$DIR/.." && pwd)"
 AGENT_DIR="$DIR/.agent"
 OUT_DIR="$DIR/out"
-AGENT_JAR="$AGENT_DIR/opentelemetry-javaagent.jar"
+AGENT_JAR="${AGENT_JAR:-$AGENT_DIR/opentelemetry-javaagent.jar}"
 RUN_MILLIS="${DEMO_RUN_MILLIS:-15000}"
 
 mkdir -p "$AGENT_DIR" "$OUT_DIR"

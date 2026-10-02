@@ -1,0 +1,6441 @@
+{
+  "header": {
+    "registryVersion": "v2.31.1",
+    "fileFormat": "0.6",
+    "registryCommit": null,
+    "registryPath": "ecosystem-registry/java/javaagent/v2.31.1/instrumentation.yaml",
+    "extractedAt": "2026-08-24T19:50:41.759563+00:00",
+    "totalLibraries": 254,
+    "librariesWithMetrics": 134,
+    "totalMetricEntries": 703,
+    "uniqueRecords": 302,
+    "uniqueMetricNames": 255,
+    "recordsByTechnology": {
+      "apache_commons_pool": 5,
+      "db.client": 4,
+      "db.pool": 18,
+      "genai": 2,
+      "http.client": 5,
+      "http.server": 6,
+      "iceberg": 7,
+      "jvm": 38,
+      "kafka": 167,
+      "messaging": 14,
+      "resilience": 4,
+      "rpc": 16,
+      "system": 16
+    },
+    "source": "ecosystem-registry"
+  },
+  "meters": [
+    {
+      "name": "apache_commons_pool.object.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{object}",
+      "attributeKeys": [
+        "apache_commons_pool.object.state",
+        "apache_commons_pool.pool.name"
+      ],
+      "description": "The number of objects currently in the state described by the state attribute.",
+      "technology": "apache_commons_pool",
+      "when": "otel.instrumentation.apache-commons-pool.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "apache-commons-pool-2.0"
+      ],
+      "cite": "instrumentation.yaml:1627",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "apache_commons_pool.object.idle.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{object}",
+      "attributeKeys": [
+        "apache_commons_pool.pool.name"
+      ],
+      "description": "The maximum number of idle objects allowed in the pool.",
+      "technology": "apache_commons_pool",
+      "when": "otel.instrumentation.apache-commons-pool.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "apache-commons-pool-2.0"
+      ],
+      "cite": "instrumentation.yaml:1639",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "apache_commons_pool.object.idle.min",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{object}",
+      "attributeKeys": [
+        "apache_commons_pool.pool.name"
+      ],
+      "description": "The minimum number of idle objects allowed in the pool.",
+      "technology": "apache_commons_pool",
+      "when": "otel.instrumentation.apache-commons-pool.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "apache-commons-pool-2.0"
+      ],
+      "cite": "instrumentation.yaml:1648",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "apache_commons_pool.object.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{object}",
+      "attributeKeys": [
+        "apache_commons_pool.pool.name"
+      ],
+      "description": "The maximum number of objects allowed in the pool.",
+      "technology": "apache_commons_pool",
+      "when": "otel.instrumentation.apache-commons-pool.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "apache-commons-pool-2.0"
+      ],
+      "cite": "instrumentation.yaml:1657",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "apache_commons_pool.object.pending_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{request}",
+      "attributeKeys": [
+        "apache_commons_pool.pool.name"
+      ],
+      "description": "The number of requests currently waiting for an object from the pool.",
+      "technology": "apache_commons_pool",
+      "when": "otel.instrumentation.apache-commons-pool.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "apache-commons-pool-2.0"
+      ],
+      "cite": "instrumentation.yaml:1666",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.namespace",
+        "db.operation.name",
+        "db.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of database client operations.",
+      "technology": "db.client",
+      "when": "otel.instrumentation.common.v3-preview=true",
+      "gate": "v3-preview",
+      "emittedBy": [
+        "lettuce-5.0"
+      ],
+      "cite": "instrumentation.yaml:2045",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.namespace",
+        "db.operation.name",
+        "db.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of database client operations.",
+      "technology": "db.client",
+      "when": "otel.instrumentation.lettuce.connection-telemetry.enabled=true,otel.semconv-stability.opt-in=database,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "lettuce-4.0",
+        "lettuce-5.0"
+      ],
+      "cite": "instrumentation.yaml:2045",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "db.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.collection.name",
+        "db.namespace",
+        "db.operation.name",
+        "db.query.summary",
+        "db.system.name",
+        "network.peer.address",
+        "network.peer.port",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of database client operations.",
+      "technology": "db.client",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "aws-sdk-1.11",
+        "aws-sdk-2.2",
+        "cassandra-3.0",
+        "cassandra-4.0",
+        "cassandra-4.4",
+        "clickhouse-client-v1-0.5",
+        "clickhouse-client-v2-0.8",
+        "couchbase-2.0",
+        "couchbase-2.6",
+        "elasticsearch-api-client-7.16",
+        "elasticsearch-rest-5.0",
+        "elasticsearch-rest-6.4",
+        "elasticsearch-rest-7.0",
+        "elasticsearch-transport-5.0",
+        "elasticsearch-transport-5.3",
+        "elasticsearch-transport-6.0",
+        "geode-1.4",
+        "hbase-client-1.0",
+        "hbase-client-1.4",
+        "hbase-client-2.0",
+        "influxdb-2.4",
+        "jedis-4.0",
+        "lettuce-5.1",
+        "mongo-3.1",
+        "mongo-3.7",
+        "mongo-4.0",
+        "mongo-async-3.3",
+        "opensearch-java-3.0",
+        "opensearch-rest-1.0",
+        "opensearch-rest-3.0",
+        "rediscala-1.8",
+        "redisson-3.0",
+        "redisson-3.17",
+        "spymemcached-2.12"
+      ],
+      "cite": "instrumentation.yaml:1937",
+      "source": "registry",
+      "libraryCount": 34
+    },
+    {
+      "name": "db.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.namespace",
+        "db.operation.name",
+        "db.query.summary",
+        "db.system.name",
+        "network.peer.address",
+        "network.peer.port",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of database client operations.",
+      "technology": "db.client",
+      "when": "otel.semconv-stability.opt-in=database,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "jdbc",
+        "jedis-1.4",
+        "jedis-2.0",
+        "jedis-3.0",
+        "lettuce-4.0",
+        "lettuce-5.0",
+        "r2dbc-1.0",
+        "vertx-redis-client-4.0",
+        "vertx-sql-client-4.0",
+        "vertx-sql-client-5.0"
+      ],
+      "cite": "instrumentation.yaml:1849",
+      "source": "registry",
+      "libraryCount": 10
+    },
+    {
+      "name": "db.client.connection.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name",
+        "db.client.connection.state"
+      ],
+      "description": "The number of connections that are currently in state described by the state attribute.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "redisson-metrics-3.26",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:1676",
+      "source": "registry",
+      "libraryCount": 9
+    },
+    {
+      "name": "db.client.connection.create_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The time it took to create a new connection.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1688",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connection.idle.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The maximum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:1697",
+      "source": "registry",
+      "libraryCount": 4
+    },
+    {
+      "name": "db.client.connection.idle.min",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The minimum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "redisson-metrics-3.26",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:1706",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "db.client.connection.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connection}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The maximum number of open connections allowed.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "redisson-metrics-3.26",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:1715",
+      "source": "registry",
+      "libraryCount": 8
+    },
+    {
+      "name": "db.client.connection.pending_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{request}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The number of current pending requests for an open connection.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "redisson-metrics-3.26",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:1724",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "db.client.connection.timeouts",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{timeout}",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1733",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connection.use_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The time between borrowing a connection and returning it to the pool.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1743",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connection.wait_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "db.client.connection.pool.name"
+      ],
+      "description": "The time it took to obtain an open connection from the pool.",
+      "technology": "db.pool",
+      "when": "otel.semconv-stability.opt-in=database",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1753",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.create_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The time it took to create a new connection.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1762",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.idle.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The maximum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:1771",
+      "source": "registry",
+      "libraryCount": 4
+    },
+    {
+      "name": "db.client.connections.idle.min",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The minimum number of idle open connections allowed.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "redisson-metrics-3.26",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:1780",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "db.client.connections.max",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The maximum number of open connections allowed.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "redisson-metrics-3.26",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:1789",
+      "source": "registry",
+      "libraryCount": 8
+    },
+    {
+      "name": "db.client.connections.pending_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{requests}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The number of pending requests for an open connection, cumulative for the entire pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "redisson-metrics-3.26",
+        "tomcat-jdbc-8.5"
+      ],
+      "cite": "instrumentation.yaml:1798",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "db.client.connections.timeouts",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{timeouts}",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The number of connection timeouts that have occurred trying to obtain a connection from the pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1808",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.usage",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{connections}",
+      "attributeKeys": [
+        "pool.name",
+        "state"
+      ],
+      "description": "The number of connections that are currently in state described by the state attribute.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "alibaba-druid-1.0",
+        "apache-dbcp-2.0",
+        "c3p0-0.9",
+        "hikaricp-3.0",
+        "oracle-ucp-11.2",
+        "redisson-metrics-3.26",
+        "tomcat-dbcp-8.0",
+        "tomcat-jdbc-8.5",
+        "vibur-dbcp-11.0"
+      ],
+      "cite": "instrumentation.yaml:1818",
+      "source": "registry",
+      "libraryCount": 9
+    },
+    {
+      "name": "db.client.connections.use_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The time between borrowing a connection and returning it to the pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1830",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "db.client.connections.wait_time",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "pool.name"
+      ],
+      "description": "The time it took to obtain an open connection from the pool.",
+      "technology": "db.pool",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "hikaricp-3.0"
+      ],
+      "cite": "instrumentation.yaml:1840",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "gen_ai.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "gen_ai.operation.name",
+        "gen_ai.provider.name",
+        "gen_ai.request.model",
+        "gen_ai.response.model"
+      ],
+      "description": "GenAI operation duration.",
+      "technology": "genai",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "aws-sdk-2.2",
+        "openai-java-1.1"
+      ],
+      "cite": "instrumentation.yaml:2122",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "gen_ai.client.token.usage",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "{token}",
+      "attributeKeys": [
+        "gen_ai.operation.name",
+        "gen_ai.provider.name",
+        "gen_ai.request.model",
+        "gen_ai.response.model",
+        "gen_ai.token.type"
+      ],
+      "description": "Measures number of input and output tokens used.",
+      "technology": "genai",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "aws-sdk-2.2",
+        "openai-java-1.1"
+      ],
+      "cite": "instrumentation.yaml:2135",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "network.protocol.version",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "akka-http-10.0",
+        "apache-httpasyncclient-4.1",
+        "apache-httpclient-2.0",
+        "apache-httpclient-4.0",
+        "apache-httpclient-4.3",
+        "apache-httpclient-5.0",
+        "apache-httpclient-5.2",
+        "armeria-1.3",
+        "async-http-client-1.8",
+        "async-http-client-1.9",
+        "async-http-client-2.0",
+        "google-http-client-1.19",
+        "http-url-connection",
+        "java-http-client",
+        "jetty-httpclient-12.0",
+        "jetty-httpclient-9.2",
+        "jodd-http-4.2",
+        "ktor-2.0",
+        "ktor-3.0",
+        "kubernetes-client-7.0",
+        "netty-3.8",
+        "netty-4.0",
+        "netty-4.1",
+        "okhttp-2.2",
+        "okhttp-3.0",
+        "pekko-http-1.0",
+        "play-ws-1.0",
+        "play-ws-2.0",
+        "play-ws-2.1",
+        "ratpack-1.7",
+        "reactor-netty-1.0",
+        "spring-web-3.1",
+        "spring-webflux-5.0",
+        "spring-webflux-5.3",
+        "vertx-http-client-3.0",
+        "vertx-http-client-4.0",
+        "vertx-http-client-5.0"
+      ],
+      "cite": "instrumentation.yaml:2182",
+      "source": "registry",
+      "libraryCount": 37
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.common.experimental.controller-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ratpack-1.7"
+      ],
+      "cite": "instrumentation.yaml:2167",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "network.protocol.version",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:2182",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.instrumentation.kubernetes-client.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "kubernetes-client-7.0"
+      ],
+      "cite": "instrumentation.yaml:2167",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.client.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "network.protocol.version",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of HTTP client requests.",
+      "technology": "http.client",
+      "when": "otel.semconv-stability.opt-in=service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "akka-http-10.0",
+        "apache-httpasyncclient-4.1",
+        "apache-httpclient-2.0",
+        "apache-httpclient-4.0",
+        "apache-httpclient-5.0",
+        "armeria-1.3",
+        "async-http-client-1.8",
+        "async-http-client-1.9",
+        "async-http-client-2.0",
+        "google-http-client-1.19",
+        "http-url-connection",
+        "java-http-client",
+        "jetty-httpclient-12.0",
+        "jetty-httpclient-9.2",
+        "jodd-http-4.2",
+        "kubernetes-client-7.0",
+        "netty-3.8",
+        "netty-4.0",
+        "netty-4.1",
+        "okhttp-2.2",
+        "okhttp-3.0",
+        "ratpack-1.7",
+        "reactor-netty-1.0",
+        "spring-web-3.1",
+        "spring-webflux-5.0",
+        "spring-webflux-5.3",
+        "vertx-http-client-3.0",
+        "vertx-http-client-4.0",
+        "vertx-http-client-5.0"
+      ],
+      "cite": "instrumentation.yaml:2182",
+      "source": "registry",
+      "libraryCount": 29
+    },
+    {
+      "name": "http.server.active_requests",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{requests}",
+      "attributeKeys": [
+        "http.request.method",
+        "url.scheme"
+      ],
+      "description": "Number of active HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:2199",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "activej-http-6.0",
+        "akka-http-10.0",
+        "armeria-1.3",
+        "grizzly-2.3",
+        "helidon-4.3",
+        "java-http-server",
+        "jetty-11.0",
+        "jetty-12.0",
+        "jetty-8.0",
+        "ktor-1.0",
+        "ktor-2.0",
+        "ktor-3.0",
+        "netty-3.8",
+        "netty-4.0",
+        "netty-4.1",
+        "pekko-http-1.0",
+        "ratpack-1.7",
+        "restlet-1.1",
+        "restlet-2.0",
+        "servlet-2.2",
+        "servlet-3.0",
+        "spring-webflux-5.3",
+        "spring-webmvc-5.3",
+        "tomcat-10.0",
+        "tomcat-7.0",
+        "undertow-1.4"
+      ],
+      "cite": "instrumentation.yaml:2242",
+      "source": "registry",
+      "libraryCount": 26
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:2210",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.servlet.experimental.request-parameters.included=test-parameter",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "servlet-5.0"
+      ],
+      "cite": "instrumentation.yaml:2210",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "http.server.request.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Duration of HTTP server requests.",
+      "technology": "http.server",
+      "when": "otel.semconv-stability.opt-in=service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "akka-http-10.0",
+        "armeria-1.3",
+        "netty-3.8",
+        "netty-4.0",
+        "netty-4.1",
+        "spring-webflux-5.3"
+      ],
+      "cite": "instrumentation.yaml:2210",
+      "source": "registry",
+      "libraryCount": 6
+    },
+    {
+      "name": "http.server.response.body.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "http.request.method",
+        "http.response.status_code",
+        "http.route",
+        "network.protocol.version",
+        "url.scheme"
+      ],
+      "description": "Size of HTTP server response bodies.",
+      "technology": "http.server",
+      "when": "otel.instrumentation.http.server.emit-experimental-telemetry=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "ktor-3.0"
+      ],
+      "cite": "instrumentation.yaml:2257",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.data_files.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of data files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2274",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.data_files.size",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The total size of all scanned data files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2287",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.data_manifests.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of data manifests.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2298",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.delete_files.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.delete_file.type",
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of delete files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2311",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.delete_files.size",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The total size of all scanned delete files.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2326",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.delete_manifests.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{file}",
+      "attributeKeys": [
+        "iceberg.scan.state",
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The number of delete manifests.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2337",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "iceberg.scan.planning.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "iceberg.schema.id",
+        "iceberg.table.name"
+      ],
+      "description": "The total duration needed to plan the scan.",
+      "technology": "iceberg",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "iceberg-1.8"
+      ],
+      "cite": "instrumentation.yaml:2350",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{buffer}",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Number of buffers in the pool.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2361",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{buffer}",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Number of buffers in the pool.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2361",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of total memory capacity of buffers.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2370",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of total memory capacity of buffers.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2370",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of memory used by buffers.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2379",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.buffer.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.buffer.pool.name"
+      ],
+      "description": "Measure of memory used by buffers.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2379",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes currently loaded.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2388",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes currently loaded.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2388",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.loaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes loaded since JVM start.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2395",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.loaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes loaded since JVM start.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2395",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.unloaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes unloaded since JVM start.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2402",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.class.unloaded",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{class}",
+      "attributeKeys": [],
+      "description": "Number of classes unloaded since JVM start.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2402",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{cpu}",
+      "attributeKeys": [],
+      "description": "Number of processors available to the Java virtual machine.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2409",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.longlock",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [],
+      "description": "Long lock times",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2416",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.recent_utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2423",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.recent_utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2423",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.cpu.time",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "s",
+      "attributeKeys": [],
+      "description": "CPU time used by the process as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2430",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.file_descriptor.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{file_descriptor}",
+      "attributeKeys": [],
+      "description": "Number of open file descriptors as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2437",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.file_descriptor.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{file_descriptor}",
+      "attributeKeys": [],
+      "description": "Measure of max open file descriptors as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2444",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.gc.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "jvm.gc.action",
+        "jvm.gc.name"
+      ],
+      "description": "Duration of JVM garbage collection actions.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2464",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.gc.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "jvm.gc.action",
+        "jvm.gc.cause",
+        "jvm.gc.name"
+      ],
+      "description": "Duration of JVM garbage collection actions.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2451",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.allocation",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "arena"
+      ],
+      "description": "Measure of memory allocations.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2475",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.committed",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory committed.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2484",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.committed",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory committed.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2484",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.init",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of initial memory requested.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2495",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.init",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of initial memory requested.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2495",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of max obtainable memory.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2506",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.limit",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of max obtainable memory.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2506",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2517",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2517",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used_after_last_gc",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used, as measured after the most recent garbage collection event on this pool.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2528",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.memory.used_after_last_gc",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "jvm.memory.pool.name",
+        "jvm.memory.type"
+      ],
+      "description": "Measure of memory used, as measured after the most recent garbage collection event on this pool.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2528",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.system.cpu.load_1m",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "{run_queue_item}",
+      "attributeKeys": [],
+      "description": "Average CPU load of the whole system for the last minute as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2540",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.system.cpu.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the whole system as reported by the JVM.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2548",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.system.cpu.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [],
+      "description": "Recent CPU utilization for the whole system as reported by the JVM.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2548",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.thread.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{thread}",
+      "attributeKeys": [
+        "jvm.thread.daemon"
+      ],
+      "description": "Number of executing platform threads.",
+      "technology": "jvm",
+      "when": "Java17",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2556",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.thread.count",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "{thread}",
+      "attributeKeys": [
+        "jvm.thread.daemon",
+        "jvm.thread.state"
+      ],
+      "description": "Number of executing platform threads.",
+      "technology": "jvm",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2565",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "jvm.thread.virtual.pinned",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [],
+      "description": "Duration of virtual thread pinning.",
+      "technology": "jvm",
+      "when": "Java21",
+      "gate": "java-version",
+      "emittedBy": [
+        "runtime-telemetry"
+      ],
+      "cite": "instrumentation.yaml:2576",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.assigned_partitions",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of partitions currently assigned to this consumer",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2583",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.bytes_consumed_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average number of bytes consumed per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2592",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.bytes_consumed_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The total number of bytes consumed",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2603",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.commit_latency_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time taken for a commit request",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2614",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.commit_latency_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken for a commit request",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2623",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.commit_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of commit calls per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2632",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.commit_sync_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the consumer has spent in commitSync in nanoseconds",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:2641",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.commit_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of commit calls",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2650",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.committed_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the consumer has spent in committed in nanoseconds",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:2659",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.connection_close_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of connections closed per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2668",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.connection_close_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections closed",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2677",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.connection_count",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The current number of active connections.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2686",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.connection_creation_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of new connections established per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2695",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.connection_creation_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of new connections established",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2704",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.failed_authentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of connections with failed authentication per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2713",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.failed_authentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections with failed authentication",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2722",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.failed_reauthentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of failed re-authentication of connections per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2731",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.failed_reauthentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of failed re-authentication of connections",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2740",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.failed_rebalance_rate_per_hour",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of failed rebalance events per hour",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2749",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.failed_rebalance_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of failed rebalance events",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2758",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_latency_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time taken for a fetch request.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2767",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_latency_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken for any fetch request.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2776",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of fetch requests per second.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2785",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_size_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average number of bytes fetched per request",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2794",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_size_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The maximum number of bytes fetched per request",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2805",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_throttle_time_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average throttle time in ms",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2816",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_throttle_time_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The maximum throttle time in ms",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2825",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.fetch_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of fetch requests.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2834",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.heartbeat_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of heartbeats per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2843",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.heartbeat_response_time_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken to receive a response to a heartbeat request",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:2852",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.heartbeat_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of heartbeats",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2861",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.incoming_byte_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of bytes read off all sockets per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2870",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.incoming_byte_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of bytes read off all sockets",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2881",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.io_ratio",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The fraction of time the I/O thread spent doing I/O",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2892",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.io_time_ns_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average length of time for I/O per select call in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2901",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.io_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent doing I/O",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:2910",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.io_wait_ratio",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The fraction of time the I/O thread spent waiting",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2919",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.io_wait_time_ns_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average length of time the I/O thread spent waiting for a socket ready for reads or writes in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2928",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.io_wait_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent waiting",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:2938",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.io_waittime_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent waiting",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2947",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.iotime_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent doing I/O",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2956",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.join_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of group joins per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2965",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.join_time_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time taken for a group rejoin",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2974",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.join_time_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken for a group rejoin",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2983",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.join_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of group joins",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:2992",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.last_heartbeat_seconds_ago",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of seconds since the last coordinator heartbeat was sent",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3001",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.last_poll_seconds_ago",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of seconds since the last poll() invocation.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3011",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.last_rebalance_seconds_ago",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of seconds since the last successful rebalance event",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3020",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.network_io_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of network operations (reads or writes) on all connections per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3029",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.network_io_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of network operations (reads or writes) on all connections",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3039",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.outgoing_byte_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of outgoing bytes sent to all servers per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3049",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.outgoing_byte_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of outgoing bytes sent to all servers",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3060",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.partition_assigned_latency_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time taken for a partition-assigned rebalance listener callback",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3071",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.partition_assigned_latency_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken for a partition-assigned rebalance listener callback",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3081",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.poll_idle_ratio_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average fraction of time the consumer's poll() is idle as opposed to waiting for the user code to process records.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3091",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.rebalance_latency_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time taken for a group to complete a successful rebalance, which may be composed of several failed re-trials until it succeeded",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3101",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.rebalance_latency_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken for a group to complete a successful rebalance, which may be composed of several failed re-trials until it succeeded",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3111",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.rebalance_latency_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of milliseconds this consumer has spent in successful rebalances since creation",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3121",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.rebalance_rate_per_hour",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of successful rebalance events per hour, each event is composed of several failed re-trials until it succeeded",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3131",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.rebalance_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of successful rebalance events, each event is composed of several failed re-trials until it succeeded",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3141",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_consumed_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average number of records consumed per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3151",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_consumed_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The total number of records consumed",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3162",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_lag",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "partition",
+        "topic"
+      ],
+      "description": "The latest lag of the partition. Note: For topic names with periods (.), an additional metric with underscores is emitted. However, the periods replaced metric is deprecated. Please use the metric with actual topic name instead.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3173",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_lag_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "partition",
+        "topic"
+      ],
+      "description": "The average lag of the partition. Note: For topic names with periods (.), an additional metric with underscores is emitted. However, the periods replaced metric is deprecated. Please use the metric with actual topic name instead.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3215",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_lag_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "partition",
+        "topic"
+      ],
+      "description": "The maximum lag in terms of number of records for any partition in this window. NOTE: This is based on current offset and not committed offset",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3231",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_lead",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "partition",
+        "topic"
+      ],
+      "description": "The latest lead of the partition. Note: For topic names with periods (.), an additional metric with underscores is emitted. However, the periods replaced metric is deprecated. Please use the metric with actual topic name instead.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3272",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_lead_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "partition",
+        "topic"
+      ],
+      "description": "The average lead of the partition. Note: For topic names with periods (.), an additional metric with underscores is emitted. However, the periods replaced metric is deprecated. Please use the metric with actual topic name instead.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3288",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_lead_min",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "partition",
+        "topic"
+      ],
+      "description": "The minimum lead in terms of number of records for any partition in this window",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3317",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.records_per_request_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average number of records in each request",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3331",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.request_latency_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3342",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.request_latency_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3353",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.consumer.request_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of requests sent per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3364",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.request_size_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The average size of requests sent.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3375",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.request_size_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The maximum size of any request sent.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3386",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.request_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of requests sent",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3397",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.response_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of responses received per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3408",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.response_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of responses received",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3419",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.select_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of times the I/O layer checked for new I/O to perform per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3430",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.select_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of times the I/O layer checked for new I/O to perform",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3440",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.successful_authentication_no_reauth_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections with successful authentication where the client does not support re-authentication",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3450",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.successful_authentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of connections with successful authentication per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3460",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.successful_authentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections with successful authentication",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3469",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.successful_reauthentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of successful re-authentication of connections per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3478",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.successful_reauthentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of successful re-authentication of connections",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3487",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.sync_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of group syncs per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3496",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.sync_time_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time taken for a group sync",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3505",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.sync_time_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max time taken for a group sync",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3514",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.sync_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of group syncs",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3523",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.time_between_poll_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average delay between invocations of poll() in milliseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3532",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.consumer.time_between_poll_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max delay between invocations of poll() in milliseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3559",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.batch_size_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average number of bytes sent per partition per-request.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3568",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.batch_size_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The max number of bytes sent per partition per-request.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3577",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.batch_split_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average number of batch splits per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3586",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.batch_split_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of batch splits",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3595",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.buffer_available_bytes",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total amount of buffer memory that is not being used (either unallocated or in the free list).",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3604",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.buffer_exhausted_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average per-second number of record sends that are dropped due to buffer exhaustion",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3614",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.buffer_exhausted_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of record sends that are dropped due to buffer exhaustion",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3624",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.buffer_total_bytes",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The maximum amount of buffer memory the client can use (whether or not it is currently used).",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3634",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.bufferpool_wait_ratio",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The fraction of time an appender waits for space allocation.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3644",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.bufferpool_wait_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time in nanoseconds an appender waits for space allocation.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3653",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.bufferpool_wait_time_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time an appender waits for space allocation.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3662",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.byte_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average number of bytes sent per second for a topic.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3671",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.byte_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The total number of bytes sent for a topic.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3682",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.compression_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average compression rate of record batches for a topic, defined as the average ratio of the compressed batch size over the uncompressed size.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3704",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.compression_rate_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average compression rate of record batches, defined as the average ratio of the compressed batch size over the uncompressed size.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3725",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.connection_close_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of connections closed per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3735",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.connection_close_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections closed",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3744",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.connection_count",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The current number of active connections.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3753",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.connection_creation_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of new connections established per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3762",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.connection_creation_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of new connections established",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3771",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.failed_authentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of connections with failed authentication per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3780",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.failed_authentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections with failed authentication",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3789",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.failed_reauthentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of failed re-authentication of connections per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3798",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.failed_reauthentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of failed re-authentication of connections",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3807",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.flush_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in flush in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3816",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.incoming_byte_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of bytes read off all sockets per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3825",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.incoming_byte_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of bytes read off all sockets",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3836",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.io_ratio",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The fraction of time the I/O thread spent doing I/O",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3847",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.io_time_ns_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average length of time for I/O per select call in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3856",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.io_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent doing I/O",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3865",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.io_wait_ratio",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The fraction of time the I/O thread spent waiting",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3874",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.io_wait_time_ns_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average length of time the I/O thread spent waiting for a socket ready for reads or writes in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3883",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.io_wait_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent waiting",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3893",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.io_waittime_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent waiting",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3902",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.iotime_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total time the I/O thread spent doing I/O",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3911",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.metadata_age",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The age in seconds of the current producer metadata being used.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3920",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.metadata_wait_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent waiting on topic metadata in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:3929",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.network_io_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of network operations (reads or writes) on all connections per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3938",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.network_io_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of network operations (reads or writes) on all connections",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3948",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.outgoing_byte_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of outgoing bytes sent to all servers per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3958",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.outgoing_byte_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of outgoing bytes sent to all servers",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3969",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.produce_throttle_time_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time in ms a request was throttled by a broker",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3980",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.produce_throttle_time_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The maximum time in ms a request was throttled by a broker",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3989",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_error_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average per-second number of record sends that resulted in errors",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:3998",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_error_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The total number of record sends that resulted in errors",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4010",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_queue_time_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average time in ms record batches spent in the send buffer.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4021",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_queue_time_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The maximum time in ms record batches spent in the send buffer.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4030",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_retry_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average per-second number of retried record sends",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4039",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_retry_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The total number of retried record sends",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4050",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_send_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The average number of records sent per second.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4061",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_send_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "topic"
+      ],
+      "description": "The total number of records sent.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4072",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_size_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average record size",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4083",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.record_size_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The maximum record size",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4092",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.records_per_request_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The average number of records per request.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4101",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.request_latency_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The average request latency in ms",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4110",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.request_latency_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The maximum request latency in ms",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4121",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.request_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of requests sent per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4132",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.request_size_avg",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The average size of requests sent.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4143",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.request_size_max",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The maximum size of any request sent.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4154",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.request_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of requests sent",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4165",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.requests_in_flight",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The current number of in-flight requests awaiting a response.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4176",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.response_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The number of responses received per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4185",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.response_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id",
+        "node-id"
+      ],
+      "description": "The total number of responses received",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4196",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.select_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of times the I/O layer checked for new I/O to perform per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4207",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.select_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of times the I/O layer checked for new I/O to perform",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4217",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.successful_authentication_no_reauth_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections with successful authentication where the client does not support re-authentication",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4227",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.successful_authentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of connections with successful authentication per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4237",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.successful_authentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of connections with successful authentication",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4246",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.successful_reauthentication_rate",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of successful re-authentication of connections per second",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4255",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.successful_reauthentication_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The total number of successful re-authentication of connections",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4264",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "kafka.producer.txn_abort_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in abortTransaction in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:4273",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.txn_begin_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in beginTransaction in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:4282",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.txn_commit_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in commitTransaction in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:4291",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.txn_init_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in initTransactions in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:4300",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.txn_prepare_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in prepareTransaction in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:4309",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.txn_send_offsets_time_ns_total",
+      "instrument": "counter",
+      "dataType": "DOUBLE_SUM",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "Total time producer has spent in sendOffsetsToTransaction in nanoseconds.",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11"
+      ],
+      "cite": "instrumentation.yaml:4318",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "kafka.producer.waiting_threads",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "",
+      "attributeKeys": [
+        "client-id"
+      ],
+      "description": "The number of user threads blocked waiting for buffer memory to enqueue their records",
+      "technology": "kafka",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "kafka-clients-0.11",
+        "kafka-clients-2.6"
+      ],
+      "cite": "instrumentation.yaml:4327",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "messaging.client.consumed.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation.name",
+        "messaging.system"
+      ],
+      "description": "Number of messages that were delivered to the application.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.common.v3-preview=true",
+      "gate": "v3-preview",
+      "emittedBy": [
+        "aws-lambda-events-2.2",
+        "aws-lambda-events-3.11"
+      ],
+      "cite": "instrumentation.yaml:4437",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "messaging.client.consumed.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "error.type",
+        "messaging.consumer.group.name",
+        "messaging.destination.name",
+        "messaging.destination.partition.id",
+        "messaging.destination.subscription.name",
+        "messaging.operation.name",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Number of messages that were delivered to the application.",
+      "technology": "messaging",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "aws-lambda-events-2.2",
+        "aws-lambda-events-3.11",
+        "aws-sdk-1.11",
+        "aws-sdk-2.2",
+        "jms-1.1",
+        "jms-3.0",
+        "kafka-clients-0.11",
+        "kafka-clients-2.6",
+        "nats-2.17",
+        "pulsar-2.8",
+        "rabbitmq-2.7",
+        "rocketmq-client-5.0",
+        "spring-integration-4.1"
+      ],
+      "cite": "instrumentation.yaml:4437",
+      "source": "registry",
+      "libraryCount": 13
+    },
+    {
+      "name": "messaging.client.consumed.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation.name",
+        "messaging.system"
+      ],
+      "description": "Number of messages that were delivered to the application.",
+      "technology": "messaging",
+      "when": "otel.semconv-stability.preview=messaging/dup",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "aws-lambda-events-2.2",
+        "aws-lambda-events-3.11"
+      ],
+      "cite": "instrumentation.yaml:4437",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "messaging.client.operation.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.consumer.group.name",
+        "messaging.destination.name",
+        "messaging.destination.partition.id",
+        "messaging.destination.subscription.name",
+        "messaging.operation.name",
+        "messaging.operation.type",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of messaging operation initiated by a producer or consumer client.",
+      "technology": "messaging",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "aws-sdk-1.11",
+        "aws-sdk-2.2",
+        "jms-1.1",
+        "jms-3.0",
+        "kafka-clients-0.11",
+        "kafka-clients-2.6",
+        "nats-2.17",
+        "pulsar-2.8",
+        "rabbitmq-2.7",
+        "rocketmq-client-5.0",
+        "spring-integration-4.1"
+      ],
+      "cite": "instrumentation.yaml:4502",
+      "source": "registry",
+      "libraryCount": 11
+    },
+    {
+      "name": "messaging.client.sent.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.destination.partition.id",
+        "messaging.operation.name",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Number of messages producer attempted to send to the broker.",
+      "technology": "messaging",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "aws-sdk-1.11",
+        "aws-sdk-2.2",
+        "jms-1.1",
+        "jms-3.0",
+        "kafka-clients-0.11",
+        "kafka-clients-2.6",
+        "nats-2.17",
+        "pulsar-2.8",
+        "rabbitmq-2.7",
+        "rocketmq-client-5.0",
+        "spring-integration-4.1"
+      ],
+      "cite": "instrumentation.yaml:4562",
+      "source": "registry",
+      "libraryCount": 11
+    },
+    {
+      "name": "messaging.process.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation.name",
+        "messaging.system"
+      ],
+      "description": "Duration of processing operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.common.v3-preview=true",
+      "gate": "v3-preview",
+      "emittedBy": [
+        "aws-lambda-events-2.2",
+        "aws-lambda-events-3.11"
+      ],
+      "cite": "instrumentation.yaml:4705",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "messaging.process.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "error.type",
+        "messaging.consumer.group.name",
+        "messaging.destination.name",
+        "messaging.destination.partition.id",
+        "messaging.destination.subscription.name",
+        "messaging.operation.name",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Duration of processing operation.",
+      "technology": "messaging",
+      "when": "otel.semconv-stability.preview=messaging",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "aws-lambda-events-2.2",
+        "aws-lambda-events-3.11",
+        "aws-sdk-1.11",
+        "aws-sdk-2.2",
+        "jms-1.1",
+        "jms-3.0",
+        "kafka-clients-0.11",
+        "kafka-clients-2.6",
+        "kafka-streams-0.11",
+        "nats-2.17",
+        "pulsar-2.8",
+        "rabbitmq-2.7",
+        "reactor-kafka-1.0",
+        "rocketmq-client-5.0",
+        "spring-integration-4.1",
+        "spring-kafka-2.7",
+        "spring-pulsar-1.0",
+        "spring-rabbit-1.0",
+        "vertx-kafka-client-3.6"
+      ],
+      "cite": "instrumentation.yaml:4705",
+      "source": "registry",
+      "libraryCount": 19
+    },
+    {
+      "name": "messaging.process.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation.name",
+        "messaging.system"
+      ],
+      "description": "Duration of processing operation.",
+      "technology": "messaging",
+      "when": "otel.semconv-stability.preview=messaging/dup",
+      "gate": "semconv-preview",
+      "emittedBy": [
+        "aws-lambda-events-2.2",
+        "aws-lambda-events-3.11"
+      ],
+      "cite": "instrumentation.yaml:4705",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "messaging.publish.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of publish operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:4752",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.publish.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of publish operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:4752",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of receive operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:4769",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of receive operation.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:4769",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the number of received messages.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.messaging.experimental.receive-telemetry.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:4786",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "messaging.receive.messages",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{message}",
+      "attributeKeys": [
+        "messaging.destination.name",
+        "messaging.operation",
+        "messaging.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the number of received messages.",
+      "technology": "messaging",
+      "when": "otel.instrumentation.pulsar.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "pulsar-2.8"
+      ],
+      "cite": "instrumentation.yaml:4786",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.circuit_breaker.execution.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{execution}",
+      "attributeKeys": [
+        "failsafe.circuit_breaker.name",
+        "failsafe.circuit_breaker.outcome"
+      ],
+      "description": "Count of circuit breaker executions.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:2062",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.circuit_breaker.state_change.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{execution}",
+      "attributeKeys": [
+        "failsafe.circuit_breaker.name",
+        "failsafe.circuit_breaker.state"
+      ],
+      "description": "Count of circuit breaker state changes.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:2073",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.retry_policy.attempts",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "{attempt}",
+      "attributeKeys": [
+        "failsafe.retry_policy.name",
+        "failsafe.retry_policy.outcome"
+      ],
+      "description": "Number of attempts for each execution.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:2084",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "failsafe.retry_policy.execution.count",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{execution}",
+      "attributeKeys": [
+        "failsafe.retry_policy.name",
+        "failsafe.retry_policy.outcome"
+      ],
+      "description": "Count of execution attempts processed by the retry policy, where one execution represents the total number of attempts.",
+      "technology": "resilience",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "failsafe-3.0"
+      ],
+      "cite": "instrumentation.yaml:2095",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.response.status_code",
+        "rpc.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of outbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "grpc-1.6",
+        "thrift-0.13"
+      ],
+      "cite": "instrumentation.yaml:4803",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "rpc.client.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of outbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "apache-dubbo-2.7"
+      ],
+      "cite": "instrumentation.yaml:4820",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an outbound RPC invocation.",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "apache-dubbo-2.7",
+        "grpc-1.6",
+        "sofa-rpc-5.4",
+        "thrift-0.13"
+      ],
+      "cite": "instrumentation.yaml:4873",
+      "source": "registry",
+      "libraryCount": 4
+    },
+    {
+      "name": "rpc.client.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an outbound RPC invocation.",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:4854",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:4890",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:4890",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:4909",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.client.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:4909",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.response.status_code",
+        "rpc.system.name",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the duration of inbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "grpc-1.6",
+        "thrift-0.13"
+      ],
+      "cite": "instrumentation.yaml:4928",
+      "source": "registry",
+      "libraryCount": 2
+    },
+    {
+      "name": "rpc.server.call.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "s",
+      "attributeKeys": [
+        "rpc.method",
+        "rpc.system.name"
+      ],
+      "description": "Measures the duration of inbound remote procedure calls (RPC).",
+      "technology": "rpc",
+      "when": "otel.semconv-stability.opt-in=rpc,service.peer",
+      "gate": "semconv-opt-in",
+      "emittedBy": [
+        "apache-dubbo-2.7"
+      ],
+      "cite": "instrumentation.yaml:4960",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an inbound RPC invocation.",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "apache-dubbo-2.7",
+        "grpc-1.6",
+        "sofa-rpc-5.4",
+        "thrift-0.13"
+      ],
+      "cite": "instrumentation.yaml:4990",
+      "source": "registry",
+      "libraryCount": 4
+    },
+    {
+      "name": "rpc.server.duration",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "ms",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "The duration of an inbound RPC invocation.",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5003",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5024",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.request.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC request messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5024",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5045",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "rpc.server.response.size",
+      "instrument": "histogram",
+      "dataType": "HISTOGRAM",
+      "unit": "By",
+      "attributeKeys": [
+        "network.type",
+        "rpc.grpc.status_code",
+        "rpc.method",
+        "rpc.service",
+        "rpc.system",
+        "server.address",
+        "server.port"
+      ],
+      "description": "Measures the size of RPC response messages (uncompressed).",
+      "technology": "rpc",
+      "when": "otel.instrumentation.grpc.experimental-span-attributes=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "grpc-1.6"
+      ],
+      "cite": "instrumentation.yaml:5045",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "runtime.java.cpu_time",
+      "instrument": "gauge",
+      "dataType": "LONG_GAUGE",
+      "unit": "ms",
+      "attributeKeys": [
+        "type"
+      ],
+      "description": "Runtime Java CPU time",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5066",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "runtime.java.memory",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "type"
+      ],
+      "description": "Runtime Java memory",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5075",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk IO",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5084",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk IO",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5084",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.operations",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{operations}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk operations",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5095",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.disk.operations",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{operations}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System disk operations",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5095",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.usage",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory usage",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5106",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.usage",
+      "instrument": "updowncounter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory usage",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5106",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory utilization",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5115",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.memory.utilization",
+      "instrument": "gauge",
+      "dataType": "DOUBLE_GAUGE",
+      "unit": "1",
+      "attributeKeys": [
+        "state"
+      ],
+      "description": "System memory utilization",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5115",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.errors",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{errors}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network errors",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5124",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.errors",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{errors}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network errors",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5124",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network IO",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5135",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.io",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "By",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network IO",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5135",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.packets",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{packets}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network packets",
+      "technology": "system",
+      "when": "default",
+      "gate": "default",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5146",
+      "source": "registry",
+      "libraryCount": 1
+    },
+    {
+      "name": "system.network.packets",
+      "instrument": "counter",
+      "dataType": "LONG_SUM",
+      "unit": "{packets}",
+      "attributeKeys": [
+        "device",
+        "direction"
+      ],
+      "description": "System network packets",
+      "technology": "system",
+      "when": "otel.instrumentation.oshi.experimental-metrics.enabled=true",
+      "gate": "experimental-flag",
+      "emittedBy": [
+        "oshi-5.0"
+      ],
+      "cite": "instrumentation.yaml:5146",
+      "source": "registry",
+      "libraryCount": 1
+    }
+  ]
+}

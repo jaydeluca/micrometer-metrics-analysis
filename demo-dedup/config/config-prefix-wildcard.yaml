@@ -1,0 +1,33 @@
+# PREFIX EXPERIMENT (naive): can a single wildcard view prefix ALL bridged Micrometer metrics?
+#
+# Intent: "prepend `micrometer.` to every metric under the bridge scope" expressed the obvious way —
+# one view, a `*` instrument selector, and a stream `name`. This CANNOT work, and this config exists
+# to demonstrate why:
+#   * `stream.name` is a static literal, not a template — there is no `micrometer.{name}` syntax, so
+#     the best you can write is a single fixed string.
+#   * A `*` selector therefore renames EVERY matched instrument to the SAME literal name. Instruments
+#     of different kinds/units (gauges, sums, a histogram) cannot merge into one stream, so the SDK
+#     logs duplicate-metric conflicts and the bridged metric set collapses instead of gaining a prefix.
+# run-prefix-experiment.sh captures the resulting OTLP + the SDK conflict warnings.
+file_format: "1.0"
+disabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative
+
+  views:
+    # The naive "prefix everything" attempt. `name` is a fixed string, so all 30+ bridged instruments
+    # are renamed to the single literal `micrometer.all` -> conflict, not a prefixed set.
+    - selector: { meter_name: io.opentelemetry.micrometer-1.5, instrument_name: "*" }
+      stream: { name: micrometer.all }

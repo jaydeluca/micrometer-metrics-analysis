@@ -1,0 +1,42 @@
+# Convention-collision probe (metric-bridge-interop, stage 02 item A3).
+#
+# One config for both runs — the only thing that varies between them is the app's
+# ServerRequestObservationConvention bean, which is exactly the point: the opt-in is invisible
+# here, so no agent-side policy can key on it.
+#
+# `micrometer` enables two modules that share the instrumentation name: MicrometerInstrumentationModule
+# and SpringBootActuatorInstrumentationModule. The latter is defaultEnabled() == false — with the
+# comment "produces a lot of metrics that are already captured - e.g. JVM memory usage" — and is what
+# injects the bridge registry as a Spring bean, so Boot's meters reach the bridge at all.
+file_format: "1.0"
+disabled: false
+
+# Set here, not with -Dotel.service.name: once a config file is active the agent stops reading the
+# SDK system properties and OTEL_* variables (the FM-3 trap, verified in
+# research/20260825-worked-misconfiguration.md).
+resource:
+  attributes:
+    - name: service.name
+      value: micrometer-convention-probe
+
+instrumentation/development:
+  java:
+    common:
+      v3_preview: false
+    micrometer:
+      prometheus_mode:
+        enabled: false
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative

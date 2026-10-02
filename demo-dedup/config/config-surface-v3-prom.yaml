@@ -1,0 +1,26 @@
+# Surface capture D: Micrometer bridge on, v3-preview ON, prometheus_mode ON.
+# Diffed against config-surface-v2-prom.yaml (work-stream 01, task 1.3).
+file_format: "1.0"
+disabled: false
+
+instrumentation/development:
+  java:
+    common:
+      v3_preview: true
+    micrometer:
+      prometheus_mode:
+        enabled: true
+
+distribution:
+  javaagent:
+    instrumentation:
+      enabled:
+        - micrometer
+
+meter_provider:
+  readers:
+    - periodic:
+        interval: 3000
+        exporter:
+          otlp_file/development:
+            temporality_preference: cumulative
